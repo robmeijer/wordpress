@@ -1,0 +1,25 @@
+{
+    "name": "robm/wordpress",
+    "description": "An abstraction layer for WordPress.",
+    "homepage": "https://github.com/robmeijer/wordpress",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rob Meijer",
+            "email": "email@robmeijer.co.uk",
+            "homepage": "https://robmeijer.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RobM\\WordPress\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    }
+}
