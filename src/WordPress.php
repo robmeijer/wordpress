@@ -5,12 +5,21 @@ namespace RobM\WordPress;
 use RobM\WordPress\Action\ActionInterface;
 use RobM\WordPress\Filter\FilterInterface;
 use RobM\WordPress\Menu\MenuLocationInterface;
+use RobM\WordPress\Service\MethodResolver;
 use RobM\WordPress\Shortcode\ShortcodeInterface;
 use RobM\WordPress\Widget\AbstractWidget;
 use RobM\WordPress\Widget\WidgetAreaInterface;
 
 class WordPress
 {
+    /** @var MethodResolver */
+    protected $methodResolver;
+
+    public function __construct(MethodResolver $methodResolver)
+    {
+        $this->methodResolver = $methodResolver;
+    }
+
     /**
      * Wrapper for the WordPress add_action function for hooks
      *
@@ -188,5 +197,10 @@ class WordPress
         }
 
         $function($tag, [$shortcode, 'output']);
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        return $this->methodResolver->resolve($name, $arguments);
     }
 }
